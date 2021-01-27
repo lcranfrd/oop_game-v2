@@ -32,12 +32,21 @@ class Game {
   
   handleInteraction(e) {
     if(e.target.nodeName === 'BUTTON') {
-      this.activePhrase.checkLetter(e.target.innerText);
+      const letter = e.target.innerText;
+      e.target.disabled = true;
+      if(this.activePhrase.checkLetter(letter)) {
+       this.activePhrase.showMatchedLetter(letter);
+       e.target.className = 'chosen';
+       this.checkForWin() && this.gameOver(true);
+      } else {
+       game.removeLife();
+       e.target.className = 'wrong';
+      }
     }
   }
 
   checkForWin() {
-    letterLis = document.getElementsByClassName('letter');
+    const letterLis = document.getElementsByClassName('letter');
     return (Object.values(letterLis).every((v) => v.classList.contains('show')));
   }
 
@@ -45,7 +54,6 @@ class Game {
     this.missed++;
     const livesLis = document.querySelectorAll('[alt="Heart Icon"]');
     const lives = livesLis.length - this.missed;
-    console.log(livesLis[lives].src);
     livesLis[lives].src = 'images/lostHeart.png';
     !lives && this.gameOver(false);
   }

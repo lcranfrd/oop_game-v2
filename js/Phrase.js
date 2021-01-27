@@ -20,9 +20,8 @@ class Phrase {
   }
 
   checkLetter(letter) {
-    (this.phrase.includes(letter))
-      ? this.showMatchedLetter(letter)
-      : game.removeLife();
+    return (this.phrase.includes(letter));
+
   }
 
   showMatchedLetter(letter) {
