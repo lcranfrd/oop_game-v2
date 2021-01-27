@@ -31,18 +31,25 @@ class Game {
   }
   
   handleInteraction(e) {
-    if(e.target.nodeName === 'BUTTON') {
-      const letter = e.target.innerText;
-      e.target.disabled = true;
-      if(this.activePhrase.checkLetter(letter)) {
-       this.activePhrase.showMatchedLetter(letter);
-       e.target.classList.add('chosen');
-       this.checkForWin() && this.gameOver(true);
-      } else {
-       this.removeLife();
-       e.target.classList.add('wrong');
-      }
+    let target = null;
+    let letter = '';
+    if(e.type === 'click'){
+      target = e.target;
+      letter = e.target.innerText;
+    } else {
+      target = (Object.entries(keyBtns).filter((v)=>
+        v[1].innerText === e.key))[0][1];
+      letter = e.key;
     }
+      if(this.activePhrase.checkLetter(letter)) {
+        this.activePhrase.showMatchedLetter(letter);
+        target.classList.add('chosen');
+        this.checkForWin() && this.gameOver(true);
+      } else if(target.disabled === false) {
+          target.disabled = true;
+          this.removeLife();
+          target.classList.add('wrong');
+      }
   }
 
   checkForWin() {

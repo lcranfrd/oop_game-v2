@@ -10,7 +10,7 @@ class Phrase {
   }
   
   addPhraseToDisplay() {
-    [...this.phrase].forEach(function(v)  {
+    [...this.phrase].forEach((v) => {
       const newLi = document.createElement('li');
       newLi.className = (v !== ' ')? `hide letter ${v}`: 'space';
       newLi.textContent = v;
