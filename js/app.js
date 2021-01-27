@@ -25,13 +25,14 @@ function resetGame() {
   }
   
   document.querySelector('#btn__reset').addEventListener('click', resetGame);
+
   qwerty.addEventListener('click', (e) => {
     if(e.target.nodeName === 'BUTTON') {
       game.handleInteraction(e);
     }
   });
 
-  document.addEventListener('keydown', (e) => {
-    if(/^[a-z]$/.test(e.key))
+  document.addEventListener('keyup', (e) => {
+    if(/^[a-zA-Z]$/.test(e.key))
       game.handleInteraction(e);
   });

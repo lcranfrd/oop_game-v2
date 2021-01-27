@@ -31,24 +31,30 @@ class Game {
   }
   
   handleInteraction(e) {
-    let target = null;
     let letter = '';
-    if(e.type === 'click'){
-      target = e.target;
-      letter = e.target.innerText;
-    } else {
-      target = (Object.entries(keyBtns).filter((v)=>
-        v[1].innerText === e.key))[0][1];
-      letter = e.key;
+    let target = null;
+
+    switch(e.type) {
+      case 'click':
+        letter = e.target.innerText.toLowerCase();
+        target = e.target;
+        break;
+      case 'keyup':
+        letter = e.key.toLowerCase();
+        target = (Object.entries(keyBtns)
+          .filter((v)=>v[1]
+          .innerText === letter))[0][1];
+        break;
     }
-      if(this.activePhrase.checkLetter(letter)) {
-        this.activePhrase.showMatchedLetter(letter);
-        target.classList.add('chosen');
-        this.checkForWin() && this.gameOver(true);
-      } else if(target.disabled === false) {
-          target.disabled = true;
-          this.removeLife();
-          target.classList.add('wrong');
+
+    if(this.activePhrase.checkLetter(letter)) {
+      this.activePhrase.showMatchedLetter(letter);
+      target.classList.add('chosen');
+      this.checkForWin() && this.gameOver(true);
+    } else if(!target.disabled) {
+        target.disabled = true;
+        this.removeLife();
+        target.classList.add('wrong');
       }
   }
 
