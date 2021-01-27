@@ -10,7 +10,6 @@ class Phrase {
   }
   
   addPhraseToDisplay() {
-    // const phraseUl = document.querySelector('#phrase ul');
     [...this.phrase].forEach(function(v)  {
       const newLi = document.createElement('li');
       newLi.className = (v !== ' ')? `hide letter ${v}`: 'space';

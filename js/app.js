@@ -11,29 +11,20 @@ const qwerty = document.querySelector('#qwerty')
 
 
 let game;
-function goGame() {
-  game = new Game();
-  game.startGame();
-  qwerty.addEventListener('click', function(e) {
-    game.handleInteraction(e);
-  });
-}
+game = new Game();
 
 function resetGame() {
-  // game = null;
-  // console.log(game);
   Object.entries(phraseUl.children).forEach((v) => v[1].remove());
   Object.entries(livesLis).forEach((v) => v[1].src = 'images/liveHeart.png');
   Object.entries(keyBtns).forEach((v)=> {
     v[1].classList.remove('chosen', 'wrong');
     v[1].disabled = false;
-});
+  });
   message.innerHTML = '';
-  qwerty.removeEventListener('click', function(e) {
+  game.startGame();
+  }
+  
+  document.querySelector('#btn__reset').addEventListener('click', resetGame);
+  qwerty.addEventListener('click', function(e) {
     game.handleInteraction(e);
   });
-  game = null;
-  goGame();
-}
-
-document.querySelector('#btn__reset').addEventListener('click', resetGame);

@@ -24,9 +24,9 @@ class Game {
   }
 
   startGame() {
-    // const screenDiv = document.querySelector('#overlay');
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
+    this.missed = 0;
     screenDiv.style.display = 'none';
   }
   
@@ -51,18 +51,13 @@ class Game {
   }
 
   removeLife() {
-    console.log(this.missed)
     this.missed += 1;
-    console.log(this.missed)
-    // const livesLis = document.querySelectorAll('[alt="Heart Icon"]');
     const lives = livesLis.length - this.missed;
     livesLis[lives].src = 'images/lostHeart.png';
     !lives && this.gameOver(false);
   }
   
   gameOver(gameWon) {
-    // const screenDiv = document.querySelector('#overlay');
-    // let message = document.querySelector('#game-over-message');
     if(gameWon) {
       message.innerHTML = `Congratulatons You Won!<br>
         The Phrase:<br>
@@ -73,6 +68,6 @@ class Game {
         Try again`;
       screenDiv.className = 'lose';
     };
-    screenDiv.style.display = 'block'
+    screenDiv.style.display = 'flex'
   }
 }
