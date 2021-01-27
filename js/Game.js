@@ -24,7 +24,7 @@ class Game {
   }
 
   startGame() {
-    const screenDiv = document.querySelector('#overlay');
+    // const screenDiv = document.querySelector('#overlay');
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
     screenDiv.style.display = 'none';
@@ -36,11 +36,11 @@ class Game {
       e.target.disabled = true;
       if(this.activePhrase.checkLetter(letter)) {
        this.activePhrase.showMatchedLetter(letter);
-       e.target.className = 'chosen';
+       e.target.classList.add('chosen');
        this.checkForWin() && this.gameOver(true);
       } else {
-       game.removeLife();
-       e.target.className = 'wrong';
+       this.removeLife();
+       e.target.classList.add('wrong');
       }
     }
   }
@@ -51,16 +51,18 @@ class Game {
   }
 
   removeLife() {
-    this.missed++;
-    const livesLis = document.querySelectorAll('[alt="Heart Icon"]');
+    console.log(this.missed)
+    this.missed += 1;
+    console.log(this.missed)
+    // const livesLis = document.querySelectorAll('[alt="Heart Icon"]');
     const lives = livesLis.length - this.missed;
     livesLis[lives].src = 'images/lostHeart.png';
     !lives && this.gameOver(false);
   }
   
   gameOver(gameWon) {
-    const screenDiv = document.querySelector('#overlay');
-    let message = document.querySelector('#game-over-message');
+    // const screenDiv = document.querySelector('#overlay');
+    // let message = document.querySelector('#game-over-message');
     if(gameWon) {
       message.innerHTML = `Congratulatons You Won!<br>
         The Phrase:<br>
