@@ -51,7 +51,7 @@ class Game {
   }
 
   removeLife() {
-    this.missed += 1;
+    this.missed++;
     const lives = livesLis.length - this.missed;
     livesLis[lives].src = 'images/lostHeart.png';
     !lives && this.gameOver(false);

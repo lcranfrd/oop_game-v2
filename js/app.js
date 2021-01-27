@@ -4,8 +4,8 @@
 "use strict";
 const screenDiv = document.querySelector('#overlay');
 const keyBtns = document.querySelectorAll('.key');
-const phraseUl = document.querySelector('#phrase ul');
 const livesLis = document.querySelectorAll('[alt="Heart Icon"]');
+const phraseUl = document.querySelector('#phrase ul');
 const message = document.querySelector('#game-over-message');
 const qwerty = document.querySelector('#qwerty')
 
