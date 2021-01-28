@@ -3,6 +3,10 @@
  * Game.js */
 "use strict";
 
+/**------------------------------------------------------------------------
+ * *                                Game Class
+ *   Controls game flow
+ *------------------------------------------------------------------------**/
 class Game {
   constructor() {
     this.missed = 0;
@@ -10,6 +14,11 @@ class Game {
     this.activePhrase = null;
   }
 
+  /**------------------------------------------------------------------------
+   **                           createPhrases
+   *?  Sets Phrases object from array of phrases.
+   *@return Object
+   *------------------------------------------------------------------------**/
   createPhrases() {
     return ['A Fool and His Money Are Soon Parted',
             'Grinning From Ear to Ear',
@@ -19,10 +28,21 @@ class Game {
             .map((v) => new Phrase(v));
   }
 
+  /**------------------------------------------------------------------------
+   **                           getRandomPhrase
+   *?  Get random phrase object from phrases object.
+   *@return object
+   *------------------------------------------------------------------------**/
   getRandomPhrase() {
     return this.phrases[Math.floor(Math.random() * this.phrases.length)];
   }
 
+  /**------------------------------------------------------------------------
+   **                           startGame
+   *?  Begin game by setting activePhrase and missed counter. Sends
+   *?  activePhase to the DOM. Turns off the overlay to reveal the game board.
+   *@return null
+   *------------------------------------------------------------------------**/
   startGame() {
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
@@ -30,6 +50,16 @@ class Game {
     screenDiv.style.display = 'none';
   }
   
+
+  /**------------------------------------------------------------------------
+   **                           handleInteraction
+   *?  Accepts either mouse or keyboard event object and will set variables
+   *?  according to event type. Will further test input letter against phrase
+   *?  and set gameboard elements. Phrase board reveal if found, User keyboard
+   *?  set for letter played. Hearts area updated if played letter not found.
+   *@param e Event Object
+   *@return null
+   *------------------------------------------------------------------------**/
   handleInteraction(e) {
     let letter = '';
     let target = null;
@@ -58,11 +88,22 @@ class Game {
       }
   }
 
+/**------------------------------------------------------------------------
+ **                           checkForWin
+ *?  Check if all letters in phase have been chosen.
+ *@return Boolean
+ *------------------------------------------------------------------------**/
   checkForWin() {
     const letterLis = document.getElementsByClassName('letter');
     return (Object.values(letterLis).every((v) => v.classList.contains('show')));
   }
 
+/**------------------------------------------------------------------------
+ **                           removeLife
+ *?  Remove life heart by changing img.src to that showing lost heart.
+ *?  Increase the misssed counter.
+ *@return null
+ *------------------------------------------------------------------------**/
   removeLife() {
     this.missed++;
     const lives = livesLis.length - this.missed;
@@ -70,6 +111,13 @@ class Game {
     !lives && this.gameOver(false);
   }
   
+  /**------------------------------------------------------------------------
+   **                           gameOver
+   *?  Sets and displays gameover message according to win/lose. If won will
+   *?  show the phrase for review.
+   *@param gameWon Boolean
+   *@return null
+   *------------------------------------------------------------------------**/
   gameOver(gameWon) {
     if(gameWon) {
       message.innerHTML = `Congratulatons You Won!<br>

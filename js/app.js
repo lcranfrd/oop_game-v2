@@ -13,6 +13,13 @@ const qwerty = document.querySelector('#qwerty')
 let game;
 game = new Game();
 
+/**------------------------------------------------------------------------
+ **                           resetGame
+ *?  Start and reset for new Game. Will clear used class names, remove
+ *?  li elements from previous game, and reset endgame message. Calls the
+ *?  game.startGame() method to begin.
+ *@return null
+ *------------------------------------------------------------------------**/
 function resetGame() {
   Object.entries(phraseUl.children).forEach((v) => v[1].remove());
   Object.entries(livesLis).forEach((v) => v[1].src = 'images/liveHeart.png');
@@ -22,8 +29,16 @@ function resetGame() {
   });
   message.innerHTML = '';
   game.startGame();
-  }
-  
+}
+
+/**------------------------------------------------------------------------
+ * *                                INFO
+ *   Set evenlisteners for Reset Button, 'qwerty' keyboard area and
+ *   user keyboard input.
+ *   'qwerty' listener will delegate to button elements only.
+ *   User keyboard listener passes only Alpha characters.
+ *------------------------------------------------------------------------**/
+
   document.querySelector('#btn__reset').addEventListener('click', resetGame);
 
   qwerty.addEventListener('click', (e) => {
