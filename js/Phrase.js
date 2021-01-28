@@ -20,22 +20,26 @@ class Phrase {
    *@return null
    *------------------------------------------------------------------------**/
   addPhraseToDisplay() {
-    let time = 1;
+    let time = .5;
     [...this.phrase].forEach((v) => {
       const newLi = document.createElement('li');
       newLi.className = (v !== ' ')? `hide build ${v}`: 'space';
       newLi.textContent = v;
       phraseUl.appendChild(newLi);
-      time += 1;
     });
-    Object.entries(phraseUl.children).forEach((v) =>{
-      v[1].style.transform = 'rotateY(180deg)';
-      v[1].style.transition = time + 's';
-      v[1].style.transitionDelay = '1s';
-      v[1].classList.remove('build');
-      if(v[1].textContent !== ' ')
+    const aniWait = setTimeout(ani, 250);
+    function ani() {
+      Object.entries(phraseUl.children).forEach((v) =>{
+        v[1].style.transform = 'rotateY(180deg)';
+        v[1].style.transition = time + 's';
+        v[1].style.transitionDelay = '.5s';
+        v[1].classList.remove('build');
+        if(v[1].textContent !== ' ')
         v[1].classList.add('letter');
-    });
+        time += .25;
+      });
+    }
+    clearTimeout(ani);
   }
 
 /**------------------------------------------------------------------------

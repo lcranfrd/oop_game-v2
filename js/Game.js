@@ -114,7 +114,8 @@ class Game {
   /**------------------------------------------------------------------------
    **                           gameOver
    *?  Sets and displays gameover message according to win/lose. If won will
-   *?  show the phrase for review.
+   *?  show the phrase for review. Give overlat zIndex of '1' to cover 
+   *?  transformed elements.
    *@param gameWon Boolean
    *@return null
    *------------------------------------------------------------------------**/
@@ -130,5 +131,6 @@ class Game {
       screenDiv.className = 'lose';
     };
     screenDiv.style.display = 'flex';
+    screenDiv.style.zIndex = '1';
   }
 }
