@@ -129,6 +129,6 @@ class Game {
         Try again`;
       screenDiv.className = 'lose';
     };
-    screenDiv.style.display = 'flex'
+    screenDiv.style.display = 'flex';
   }
 }

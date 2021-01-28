@@ -21,7 +21,9 @@ game = new Game();
  *@return null
  *------------------------------------------------------------------------**/
 function resetGame() {
+  console.log(phraseUl.children);
   Object.entries(phraseUl.children).forEach((v) => v[1].remove());
+  console.log(phraseUl.children);
   Object.entries(livesLis).forEach((v) => v[1].src = 'images/liveHeart.png');
   Object.entries(keyBtns).forEach((v)=> {
     v[1].classList.remove('chosen', 'wrong');
