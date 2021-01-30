@@ -92,6 +92,7 @@ button {
 
 /* Phrase */
 
+/* build style added for phrase open transform */
 .build {
   font-size: var(--font-size-medium);
   height: 65px;
@@ -102,6 +103,7 @@ button {
   background: #FFF;
   border-radius: 5px;
 }
+/*  */
 
 .letter {
   font-size: var(--font-size-medium);
@@ -145,7 +147,6 @@ button {
 .broken-heart {
   animation: fadeOutRight;
   animation-duration: 2s;
-  
 }
 /*============================ END OF SECTION ============================*/
 
@@ -196,7 +197,7 @@ button {
   left: 0;
   right: 0;
   border-radius: 5px;
-  z-index: 1;
+  z-index: 100;
 }
 
 .title {
