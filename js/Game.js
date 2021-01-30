@@ -5,7 +5,16 @@
 
 /**------------------------------------------------------------------------
  * *                                Game Class
- *   Controls game flow
+ * *                            Controls game flow
+ * * Methods:
+ * * createPhrases()
+ * * getrandomPHrase()
+ * * startGame()
+ * * handleIneratction()
+ * * checkForWin()
+ * * removeLife()
+ * * gameOver()
+ * 
  *------------------------------------------------------------------------**/
 class Game {
   constructor() {

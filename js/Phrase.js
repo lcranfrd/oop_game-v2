@@ -5,7 +5,11 @@
 
 /**------------------------------------------------------------------------
  * *                                Phrase Class
- *   Controls phrase output to DOM and compares played letter to phrase.
+ * *    Controls phrase output to DOM and compares played letter to phrase.
+ * * Methods:
+ * * addPhraseToDisplay()
+ * * checkLetter()
+ * * showMatchedLetter()
  *------------------------------------------------------------------------**/
 class Phrase {
   constructor(phrase) {
@@ -41,7 +45,7 @@ class Phrase {
     clearTimeout(ani);
   }
 
-/**------------------------------------------------------------------------
+/**-------------------------------------------------------------------------
  **                           checkLetter
  *?  Checks the played letter against the phrase for containment.
  *@param letter string charachter  
@@ -57,7 +61,7 @@ class Phrase {
    *?  name from hide to show.
    *@param letter string character
    *@return null
-   *------------------------------------------------------------------------**/
+   *-----------------------------------------------------------------------**/
   showMatchedLetter(letter) {
     const matchLis = document.getElementsByClassName(letter);
     Object.values(matchLis).forEach((v) => {

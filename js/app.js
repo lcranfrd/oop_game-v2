@@ -39,10 +39,10 @@ function resetGame() {
 
 /**------------------------------------------------------------------------
  * *                                INFO
- *   Set evenlisteners for Reset Button, 'qwerty' keyboard area and
- *   user keyboard input.
- *   'qwerty' listener will delegate to button elements only.
- *   User keyboard listener passes only Alpha characters.
+ * *   Set evenlisteners for Reset Button, 'qwerty' keyboard area and
+ * *   user keyboard input.
+ * *   'qwerty' listener will delegate to button elements only.
+ * *   User keyboard listener passes only Alpha characters.
  *------------------------------------------------------------------------**/
 
   document.querySelector('#btn__reset').addEventListener('click', resetGame);
