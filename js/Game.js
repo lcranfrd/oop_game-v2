@@ -63,9 +63,10 @@ class Game {
   /**------------------------------------------------------------------------
    **                           handleInteraction
    *?  Accepts either mouse or keyboard event object and will set variables
-   *?  according to event type. Will further test input letter against phrase
-   *?  and set gameboard elements. Phrase board reveal if found, User keyboard
-   *?  set for letter played. Hearts area updated if played letter not found.
+   *?  according to event type.
+   *?  Tests input letter against phrase. If found, phrase board will reveal.
+   *?  User keyboard letter disabled for letter played.
+   *?  Hearts area updated if played letter not found.
    *@param e Event Object
    *@return null
    *------------------------------------------------------------------------**/
@@ -81,8 +82,7 @@ class Game {
       case 'keyup':
         letter = e.key.toLowerCase();
         target = (Object.entries(keyBtns)
-          .filter((v)=>v[1]
-          .innerText === letter))[0][1];
+          .filter((v) => v[1].innerText === letter))[0][1];
         break;
     }
       if(this.activePhrase.checkLetter(letter)) {
@@ -98,7 +98,7 @@ class Game {
 
 /**------------------------------------------------------------------------
  **                           checkForWin
- *?  Check if all letters in phase have been chosen.
+ *?  Check if all letters in phrase have been chosen.
  *@return Boolean
  *------------------------------------------------------------------------**/
   checkForWin() {
@@ -110,6 +110,7 @@ class Game {
  **                           removeLife
  *?  Remove life heart by changing img.src to that showing lost heart.
  *?  Increase the misssed counter.
+ *?  Calls the gameOver() method is gam is lost (0 lives).
  *@return null
  *------------------------------------------------------------------------**/
   removeLife() {
@@ -122,7 +123,7 @@ class Game {
   
   /**------------------------------------------------------------------------
    **                           gameOver
-   *?  Sets and displays gameover message according to win/lose. If won will
+   *?  Sets and displays gameover message according to win/lose. If won, will
    *?  show the phrase for review.
    *@param gameWon Boolean
    *@return null
@@ -139,6 +140,5 @@ class Game {
       screenDiv.className = 'lose';
     };
     screenDiv.style.display = 'flex';
-    // screenDiv.style.zIndex = '1';
   }
 }

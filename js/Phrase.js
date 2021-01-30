@@ -33,7 +33,7 @@ class Phrase {
     });
     const aniWait = setTimeout(ani, 250);
     function ani() {
-      Object.entries(phraseUl.children).forEach((v) =>{
+      Object.entries(phraseUl.children).forEach((v) => {
         v[1].style.transform = 'rotateY(180deg)';
         v[1].style.transition = 'all ' + time + 's .25s';
         v[1].classList.remove('build');
@@ -58,7 +58,7 @@ class Phrase {
   /**------------------------------------------------------------------------
    **                           ShowMatchedLetter
    *?  Passed letter on phrase will be shown on gameboard by setting class
-   *?  name from hide to show.
+   *?  name from hide to show with animation.
    *@param letter string character
    *@return null
    *-----------------------------------------------------------------------**/
