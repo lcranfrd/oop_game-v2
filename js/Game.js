@@ -76,15 +76,14 @@ class Game {
           .innerText === letter))[0][1];
         break;
     }
-
-    if(this.activePhrase.checkLetter(letter)) {
-      this.activePhrase.showMatchedLetter(letter);
-      target.classList.add('chosen');
-      this.checkForWin() && this.gameOver(true);
-    } else if(!target.disabled) {
-        target.disabled = true;
-        this.removeLife();
-        target.classList.add('wrong');
+      if(this.activePhrase.checkLetter(letter)) {
+        this.activePhrase.showMatchedLetter(letter);
+        target.classList.add('chosen');
+        this.checkForWin() && this.gameOver(true);
+      } else if(!target.disabled) {
+          target.disabled = true;
+          this.removeLife();
+          target.classList.add('wrong');
       }
   }
 
@@ -107,6 +106,7 @@ class Game {
   removeLife() {
     this.missed++;
     const lives = livesLis.length - this.missed;
+    livesLis[lives].classList.add('broken-heart');
     livesLis[lives].src = 'images/lostHeart.png';
     !lives && this.gameOver(false);
   }
@@ -114,8 +114,7 @@ class Game {
   /**------------------------------------------------------------------------
    **                           gameOver
    *?  Sets and displays gameover message according to win/lose. If won will
-   *?  show the phrase for review. Give overlat zIndex of '1' to cover 
-   *?  transformed elements.
+   *?  show the phrase for review.
    *@param gameWon Boolean
    *@return null
    *------------------------------------------------------------------------**/
@@ -131,6 +130,6 @@ class Game {
       screenDiv.className = 'lose';
     };
     screenDiv.style.display = 'flex';
-    screenDiv.style.zIndex = '1';
+    // screenDiv.style.zIndex = '1';
   }
 }

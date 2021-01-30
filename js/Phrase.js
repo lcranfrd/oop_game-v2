@@ -31,11 +31,10 @@ class Phrase {
     function ani() {
       Object.entries(phraseUl.children).forEach((v) =>{
         v[1].style.transform = 'rotateY(180deg)';
-        v[1].style.transition = time + 's';
-        v[1].style.transitionDelay = '.5s';
+        v[1].style.transition = 'all ' + time + 's .25s';
         v[1].classList.remove('build');
         if(v[1].textContent !== ' ')
-        v[1].classList.add('letter');
+          v[1].classList.add('letter');
         time += .25;
       });
     }
@@ -63,7 +62,7 @@ class Phrase {
     const matchLis = document.getElementsByClassName(letter);
     Object.values(matchLis).forEach((v) => {
       v.style.transform = 'rotateY(0deg)';
-      v.style.transition = '2s';
+      v.style.transition = 'transform 2s';
       v.classList.remove('hide');
       v.classList.add('show');
     });

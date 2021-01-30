@@ -15,15 +15,20 @@ game = new Game();
 
 /**------------------------------------------------------------------------
  **                           resetGame
- *?  Start and reset for new Game. Will clear used class names, remove
- *?  li elements from previous game, and reset endgame message. Calls the
- *?  game.startGame() method to begin.
+ *?  Start and reset for new Game.
+ *?  Remove phrase li elements from previous game.
+ *?  Reset scorboard ul/li img src and class names.
+ *?  Reset used keyboard class names.
+ *?  Clear endgame message
+ *?  Call game.startGame() method to begin.
  *@return null
  *------------------------------------------------------------------------**/
 function resetGame() {
   Object.entries(phraseUl.children).forEach((v) => v[1].remove());
-  console.log(phraseUl.children);
-  Object.entries(livesLis).forEach((v) => v[1].src = 'images/liveHeart.png');
+  Object.entries(livesLis).forEach((v) => {
+    v[1].src = 'images/liveHeart.png';
+    v[1].classList.remove('broken-heart');
+  });
   Object.entries(keyBtns).forEach((v)=> {
     v[1].classList.remove('chosen', 'wrong');
     v[1].disabled = false;

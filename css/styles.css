@@ -13,7 +13,7 @@
   --color-keys-light: #E5E5E5;
   --font-size-large: 60px;
   --font-size-medium: 20px;
-  --transition: all .2s ease-in-out;
+  --transition: all 1.5s ease-in-out;
 }
 
 /* main */
@@ -54,9 +54,9 @@ button {
   font-size: var(--font-size-medium);
   background-color: var(--color-keys-light);
   border-radius: 5px;
-  /* -webkit-transition: var(--transition);
+  -webkit-transition: var(--transition);
   -o-transition: var(--transition);
-  transition: var(--transition); */
+  transition: var(--transition);
   cursor: pointer;
 }
 
@@ -118,8 +118,6 @@ button {
   width: 15px;
 }
 
-
-
 .show {
   color: #fff;
   background-color: #4ac0d5;
@@ -142,20 +140,13 @@ button {
 }
 
 /*========================================================================*/
-.key:hover {
-  border: solid 1px lightsteelblue;
-}
+/* Added Animation for the Hearts (.tries) images*/
 
-.key, .key:active {
-  animation: keypress 2s;
+.broken-heart {
+  animation: fadeOutRight;
+  animation-duration: 2s;
+  
 }
-
-@keyframes keypress {
-  0% {transform: scale3d(none);}
-  75% {transform: scale3d(.5,.5,.5);}
-  100% {transform: scale3d(none);}
-}
-
 /*============================ END OF SECTION ============================*/
 
 .chosen {
@@ -163,11 +154,15 @@ button {
   border-radius: 5px;
   font-size: var(--font-size-medium);
   color: #FFFFFF;
+  animation: bounceIn;
+  animation-duration: 1s;
 }
 
 .wrong {
   background: #f7a964;
   color: #FFFFFF;
+  animation: bounceOut;
+  animation-duration: 1s;
 }
 
 #btn__reset {
@@ -201,6 +196,7 @@ button {
   left: 0;
   right: 0;
   border-radius: 5px;
+  z-index: 1;
 }
 
 .title {
