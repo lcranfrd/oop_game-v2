@@ -55,7 +55,6 @@ class Game {
   startGame() {
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
-    this.missed = 0;
     screenDiv.style.display = 'none';
   }
   
