@@ -8,10 +8,7 @@ const livesLis = document.querySelectorAll('[alt="Heart Icon"]');
 const phraseUl = document.querySelector('#phrase ul');
 const message = document.querySelector('#game-over-message');
 const qwerty = document.querySelector('#qwerty')
-
-
-let game;
-game = new Game();
+let game = null;
 
 /**------------------------------------------------------------------------
  **                           resetGame
@@ -34,6 +31,7 @@ function resetGame() {
     v[1].disabled = false;
   });
   message.innerHTML = '';
+  game = new Game();
   game.startGame();
 }
 

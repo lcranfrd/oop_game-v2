@@ -88,12 +88,12 @@ class Game {
       if(this.activePhrase.checkLetter(letter)) {
         this.activePhrase.showMatchedLetter(letter);
         target.classList.add('chosen');
-        this.checkForWin() && this.gameOver(true);
-      } else if(!target.disabled) {
-          target.disabled = true;
-          this.removeLife();
-          target.classList.add('wrong');
+      } else {
+        this.removeLife();
+        target.classList.add('wrong');
       }
+      target.disabled = true;
+      this.checkForWin() && this.gameOver(true);
   }
 
 /**------------------------------------------------------------------------
