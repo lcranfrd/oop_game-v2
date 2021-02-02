@@ -87,11 +87,11 @@ class Game {
       if(this.activePhrase.checkLetter(letter)) {
         this.activePhrase.showMatchedLetter(letter);
         target.classList.add('chosen');
-      } else {
-        this.removeLife();
-        target.classList.add('wrong');
+      } else if(!target.disabled) {
+          this.removeLife();
+          target.classList.add('wrong');
+          target.disabled = true;
       }
-      target.disabled = true;
       this.checkForWin() && this.gameOver(true);
   }
 
@@ -139,5 +139,6 @@ class Game {
       screenDiv.className = 'lose';
     };
     screenDiv.style.display = 'flex';
+    resetGame();
   }
 }

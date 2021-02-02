@@ -16,12 +16,11 @@ let game = null;
  *?  Remove phrase li elements from previous game.
  *?  Reset scorboard ul/li img src and class names.
  *?  Reset used keyboard class names.
- *?  Clear endgame message
- *?  Call game.startGame() method to begin.
  *@return null
  *------------------------------------------------------------------------**/
+
 function resetGame() {
-  Object.entries(phraseUl.children).forEach((v) => v[1].remove());
+  phraseUl.innerHTML = '';
   Object.entries(livesLis).forEach((v) => {
     v[1].src = 'images/liveHeart.png';
     v[1].classList.remove('broken-heart');
@@ -30,27 +29,27 @@ function resetGame() {
     v[1].classList.remove('chosen', 'wrong');
     v[1].disabled = false;
   });
-  message.innerHTML = '';
-  game = new Game();
-  game.startGame();
 }
 
 /**------------------------------------------------------------------------
  * *                                INFO
- * *   Set evenlisteners for Reset Button, 'qwerty' keyboard area and
+ * *   Set evenlisteners for Start Game, 'qwerty' keyboard area and
  * *   'For Exceeds Expectations,' physical keyboard input.
  * *   'qwerty' listener will delegate to button elements only.
  * *   Physical keyboard listener passes only Alpha characters.
  *------------------------------------------------------------------------**/
-  document.querySelector('#btn__reset').addEventListener('click', resetGame);
+document.querySelector('#btn__reset').addEventListener('click', () => {
+  game = new Game();
+  game.startGame();
+});
 
-  qwerty.addEventListener('click', (e) => {
-    if(e.target.nodeName === 'BUTTON') {
-      game.handleInteraction(e);
-    }
-  });
+qwerty.addEventListener('click', (e) => {
+  if(e.target.nodeName === 'BUTTON') {
+    game.handleInteraction(e);
+  }
+});
 
-  document.addEventListener('keyup', (e) => {
-    if(/^[a-zA-Z]$/.test(e.key))
-      game.handleInteraction(e);
-  });
+document.addEventListener('keyup', (e) => {
+  if(/^[a-zA-Z]$/.test(e.key))
+    game.handleInteraction(e);
+});
