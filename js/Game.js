@@ -87,6 +87,7 @@ class Game {
       if(this.activePhrase.checkLetter(letter)) {
         this.activePhrase.showMatchedLetter(letter);
         target.classList.add('chosen');
+        target.disabled = true;
       } else if(!target.disabled) {
           this.removeLife();
           target.classList.add('wrong');
