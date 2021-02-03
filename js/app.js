@@ -56,6 +56,6 @@ document.addEventListener('keyup', (e) => {
     const letter = e.key.toLowerCase();
     const isTargetDisabled = (Object.entries(keyBtns)
       .filter((v) => v[1].innerText === letter))[0][1].disabled;
-    if(!isTargetDisabled) game.handleInteraction(e);
+    !isTargetDisabled && game.handleInteraction(e);
   }
 });
