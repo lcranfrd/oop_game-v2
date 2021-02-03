@@ -8,7 +8,7 @@ const livesLis = document.querySelectorAll('[alt="Heart Icon"]');
 const phraseUl = document.querySelector('#phrase ul');
 const message = document.querySelector('#game-over-message');
 const qwerty = document.querySelector('#qwerty')
-let game = null;
+let game = undefined;
 
 /**------------------------------------------------------------------------
  **                           resetGame
@@ -34,11 +34,13 @@ function resetGame() {
 /**------------------------------------------------------------------------
  * *                                INFO
  * *   Set evenlisteners for Start Game, 'qwerty' keyboard area and
- * *   'For Exceeds Expectations,' physical keyboard input.
+ * *   'For Exceeds Expectations,' added physical keyboard input.
  * *   'qwerty' listener will delegate to button elements only.
- * *   Physical keyboard listener passes only Alpha characters.
+ * *   Physical keyboard listener passes only Alpha characters that have
+ * *   been not disabled by past user selection/play.
  *------------------------------------------------------------------------**/
 document.querySelector('#btn__reset').addEventListener('click', () => {
+  if(game !== undefined) resetGame();
   game = new Game();
   game.startGame();
 });
@@ -50,6 +52,10 @@ qwerty.addEventListener('click', (e) => {
 });
 
 document.addEventListener('keyup', (e) => {
-  if(/^[a-zA-Z]$/.test(e.key))
-    game.handleInteraction(e);
+  if(/^[a-zA-Z]$/.test(e.key)) {
+    const letter = e.key.toLowerCase();
+    const isTargetDisabled = (Object.entries(keyBtns)
+      .filter((v) => v[1].innerText === letter))[0][1].disabled;
+    if(!isTargetDisabled) game.handleInteraction(e);
+  }
 });

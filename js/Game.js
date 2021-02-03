@@ -88,7 +88,7 @@ class Game {
         this.activePhrase.showMatchedLetter(letter);
         target.classList.add('chosen');
         target.disabled = true;
-      } else if(!target.disabled) {
+      } else {
           this.removeLife();
           target.classList.add('wrong');
           target.disabled = true;
@@ -132,7 +132,7 @@ class Game {
     if(gameWon) {
       message.innerHTML = `Congratulatons You Won!<br>
         The Phrase:<br>
-        ${this.activePhrase.originalPhrase}`;
+        "${this.activePhrase.originalPhrase}"`;
       screenDiv.className = 'win';
     }else {
       message.innerHTML= `Sorry, You did not guess the phrase!<br>
@@ -140,6 +140,5 @@ class Game {
       screenDiv.className = 'lose';
     };
     screenDiv.style.display = 'flex';
-    resetGame();
   }
 }
